@@ -48,7 +48,9 @@ jobs:
         run: pwsh -NoProfile -File tools/android-runtime/fetch_sources.ps1
 
       - name: Fetch Android NDK
-        run: bash tools/android-runtime/fetch_ndk_wsl.sh
+        run: |
+          sed -i 's/\r$//' tools/android-runtime/fetch_ndk_wsl.sh
+          bash tools/android-runtime/fetch_ndk_wsl.sh
 
       - name: Build Android terminal runtime
         run: |
