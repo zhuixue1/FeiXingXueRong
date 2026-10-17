@@ -54,6 +54,9 @@ jobs:
 
       - name: Build Android terminal runtime
         run: |
+          for script in tools/android-runtime/*.sh; do
+            sed -i 's/\r$//' "$script"
+          done
           export ANDROID_NDK_HOME="$HOME/.cache/operit-android-runtime/android-ndk-r29-beta4"
           bash tools/android-runtime/build_android_tools_wsl.sh
           bash tools/android-runtime/build_alpine_rootfs_wsl.sh
